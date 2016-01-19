@@ -1,0 +1,26 @@
+
+
+rule all:
+	input:
+		"extract.txt"
+
+rule summarize:
+	input:
+		"A.fasta",
+		"B.fasta"
+	output:
+		"sum.txt"
+	shell:
+		"wc -c {input} > {output}"
+
+rule extract:
+	input:
+		"sum.txt"
+	output:
+		"extract.txt"
+	shell:
+		"cut -f7 -d ' ' {input} > {output}"
+
+rule clean:
+	shell:
+		"rm extract.txt sum.txt"

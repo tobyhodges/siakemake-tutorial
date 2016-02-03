@@ -1,0 +1,16 @@
+rule summarize:
+	input:
+		#TODO
+	output:
+		#TODO
+	shell:
+		"wc -c #TODO"
+
+rule extract:
+	input:
+		#TODO
+	output:
+		#TODO
+	shell:
+		"cut -f7 -d ' ' #TODO"
+

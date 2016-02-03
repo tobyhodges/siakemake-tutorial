@@ -1,13 +1,16 @@
+SAMPLES = "A B".split()
+
 rule all:
 	input:
 		"extract.txt"
 
 rule summarize:
 	input:
-		"A.fasta",
-		"B.fasta"
+		expand("{samples}.fasta", samples=SAMPLES)
 	output:
 		"sum.txt"
+  message:
+    "summarizing counts from {input} and creating {output}"
 	shell:
 		"wc -c {input} > {output}"
 
@@ -16,6 +19,8 @@ rule extract:
 		"sum.txt"
 	output:
 		"extract.txt"
+  message:
+    "extracting the counts"
 	shell:
 		"sed 's/^[ ]*//' {input} | cut -f1 -d ' ' > {output}"
 

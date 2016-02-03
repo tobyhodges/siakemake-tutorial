@@ -4,7 +4,7 @@ rule summarize:
 	output:
 		#TODO
 	shell:
-		"wc -c #TODO"
+		"wc -c {input} > {output}"
 
 rule extract:
 	input:
@@ -12,5 +12,4 @@ rule extract:
 	output:
 		#TODO
 	shell:
-		"cut -f7 -d ' ' #TODO"
-
+		"sed 's/^[ ]*//' {input} | cut -f1 -d ' ' > {output}"

@@ -19,11 +19,11 @@ rule extract:
 	output:
 		"extract.txt"
 	shell:
-		"cut -f7 -d ' ' {input} > {output}"
+		"sed 's/^[ ]*//' {input} | cut -f1 -d ' ' > {output}"
 
 rule clean:
 	shell:
-		"rm extract.txt sum.txt"
+		"rm -f extract.txt sum.txt"
 
 
 rule report:
@@ -38,4 +38,4 @@ rule report:
 	========
 	
 	Something  {input.T1}
-	""", output.html, metadata="Thomas Schwarzl", **input)
+	""", output.html, metadata="Author", **input)

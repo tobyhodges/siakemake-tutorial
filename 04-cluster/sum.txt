@@ -1,0 +1,4 @@
+ 20 A.fasta
+ 66 B.fasta
+ 91 C.fasta
+177 total

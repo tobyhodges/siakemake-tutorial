@@ -3,33 +3,33 @@ localrules: all, extract
 SAMPLES, = glob_wildcards("{samples}.fasta")
 
 rule all:
-	input:
-		"extract.txt"
+    input:
+        "extract.txt"
 
 rule summarize:
-	input:
-		expand("{samples}.fasta", samples=SAMPLES)
-	output:
-		temp("sum.txt")
-	message:
-		"summarizing counts from {input} and creating {output}"
-	log:
-		"sum.log"
-	shell:
-		"wc -c {input} > {output} 2> {log}"
+    input:
+        expand("{samples}.fasta", samples=SAMPLES)
+    output:
+        temp("sum.txt")
+    message:
+        "summarizing counts from {input} and creating {output}"
+    log:
+        "sum.log"
+    shell:
+        "wc -c {input} > {output} 2> {log}"
 
 rule extract:
-	input:
-		"sum.txt"
-	output:
-		"extract.txt"
-	message:
-		"extracting the counts"
-	log:
-		"sum.log"
-	shell:
-		"sed 's/^[ ]*//' {input} | cut -f1 -d ' ' > {output} 2> {log}"
+    input:
+        "sum.txt"
+    output:
+        "extract.txt"
+    message:
+        "extracting the counts"
+    log:
+        "sum.log"
+    shell:
+        "sed 's/^[ ]*//' {input} | cut -f1 -d ' ' > {output} 2> {log}"
 
 rule clean:
-	shell:
-		"rm -f extract.txt sum.txt"
+    shell:
+        "rm -f extract.txt sum.txt"

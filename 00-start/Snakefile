@@ -1,15 +1,15 @@
 rule summarize:
-	input:
-		#TODO
-	output:
-		#TODO
-	shell:
-		"wc -c {input} > {output}"
+    input:
+        #TODO
+    output:
+        #TODO
+    shell:
+        "wc -c {input} > {output}"
 
 rule extract:
-	input:
-		#TODO
-	output:
-		#TODO
-	shell:
-		"sed 's/^[ ]*//' {input} | cut -f1 -d ' ' > {output}"
+    input:
+        #TODO
+    output:
+        #TODO
+    shell:
+        "sed 's/^[ ]*//' {input} | cut -f1 -d ' ' > {output}"
